@@ -30,3 +30,7 @@ data:
 openApi:
   law:
     url: ${LAW_URL}
+
+python:
+  api:
+    url: ${PYTHON_BASE_URL}
