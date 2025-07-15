@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-@EnableFeignClients(basePackages = "dsm.hackaton._8.infrastructure.feign.config")
+@EnableFeignClients(basePackages = "dsm.hackaton._8.global.config")
 @Configuration
 @Import(FeignClientErrorDecoder.class)
 public class FeignConfig {
