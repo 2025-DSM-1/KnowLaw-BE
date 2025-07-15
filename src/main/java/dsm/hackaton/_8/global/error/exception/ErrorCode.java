@@ -9,6 +9,7 @@ import lombok.Getter;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ErrorCode {
 
+    BAD_REQUEST(400, "bad request"),
     USER_NOT_FOUND(404, "user not found"),
     INTERNAL_SERVER_ERROR(500, "server error");
 
