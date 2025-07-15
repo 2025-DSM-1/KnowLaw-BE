@@ -10,6 +10,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,10 +30,12 @@ public class UserVote {
     private Long id;
 
     @ManyToOne
-    private User userId;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne
-    private Law lawId;
+    @JoinColumn(name = "law_id", nullable = false)
+    private Law law;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
