@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Getter
 @Builder
 @NoArgsConstructor
@@ -12,9 +14,9 @@ import lombok.NoArgsConstructor;
 public class LawResponse {
 
     private Long lawId;
-    private Long lawSerialNumber;
+    private int lawSerialNumber;
     private String lawTitle;
     private String lawContent;
-    private String promulgationDate;
-    private String enforcementDate;
+    private LocalDate promulgationDate;
+    private LocalDate enforcementDate;
 }
