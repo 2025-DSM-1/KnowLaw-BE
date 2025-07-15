@@ -13,4 +13,6 @@ public class LawSummaryResponse {
     private String lawSummary;
     private String backgroundInfo;
     private String example;
+    private String agreeLogic;
+    private String disagreeLogic;
 }
