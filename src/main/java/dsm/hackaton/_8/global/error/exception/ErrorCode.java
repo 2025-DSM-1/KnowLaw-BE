@@ -14,6 +14,7 @@ public enum ErrorCode {
     INVALID_TOKEN_EXCEPTION(401, "invalid token exception"),
     EXPIRED_TOKEN_EXCEPTION(401,"expired token exception"),
     PASSWORD_NOT_VALID(401, "password not valid"),
+    REFRESH_TOKEN_NOT_FOUND(404, "refresh token not found."),
     USER_NOT_FOUND(404, "user not found"),
     USER_ALREADY_EXISTS(409, "user already exists"),
     INTERNAL_SERVER_ERROR(500, "server error");
