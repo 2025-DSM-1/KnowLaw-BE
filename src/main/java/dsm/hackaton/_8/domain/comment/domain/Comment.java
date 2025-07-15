@@ -43,8 +43,9 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User userId;
+    private User user;
 
     @ManyToOne
-    private Law lawId;
+    @JoinColumn(name = "law_id", nullable = false)
+    private Law law;
 }
