@@ -24,7 +24,7 @@ public class LawController {
         return queryAllLawsService.execute();
     }
 
-    @GetMapping("{law-id}")
+    @GetMapping("/{law-id}")
     public QueryLawDetailResponse queryLawDetailResponse(@PathVariable("law-id") Long lawId) {
         return queryLawDetailService.execute(lawId);
     }
