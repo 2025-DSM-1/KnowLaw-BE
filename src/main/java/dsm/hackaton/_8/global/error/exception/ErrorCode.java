@@ -13,6 +13,7 @@ public enum ErrorCode {
     EMAIL_NOT_VERIFIED(400, "email not verified"),
     INVALID_TOKEN_EXCEPTION(401, "invalid token exception"),
     EXPIRED_TOKEN_EXCEPTION(401,"expired token exception"),
+    PASSWORD_NOT_VALID(401, "password not valid"),
     USER_NOT_FOUND(404, "user not found"),
     USER_ALREADY_EXISTS(409, "user already exists"),
     INTERNAL_SERVER_ERROR(500, "server error");
