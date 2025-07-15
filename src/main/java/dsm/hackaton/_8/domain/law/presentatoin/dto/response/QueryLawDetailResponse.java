@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -22,7 +23,7 @@ public class QueryLawDetailResponse {
 
     private String lawStatus;
 
-    private String propositionDate;
+    private LocalDate propositionDate;
 
     private String backgroundInfo;
 
