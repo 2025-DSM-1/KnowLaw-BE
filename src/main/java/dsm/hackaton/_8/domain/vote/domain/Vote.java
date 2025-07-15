@@ -35,4 +35,14 @@ public class Vote {
 
     @OneToOne
     private Law lawId;
+
+    public void incrementAgree() {
+        this.agree++;
+        this.totalVote++;
+    }
+
+    public void incrementDisAgree() {
+        this.disagree++;
+        this.totalVote++;
+    }
 }
