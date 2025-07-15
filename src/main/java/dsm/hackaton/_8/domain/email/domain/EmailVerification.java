@@ -42,4 +42,8 @@ public class EmailVerification {
     public void updateAuthCode(String authCode) {
         this.authCode = authCode;
     }
+
+    public void verify() {
+        this.isVerified = true;
+    }
 }
