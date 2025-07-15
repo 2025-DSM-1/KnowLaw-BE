@@ -24,9 +24,6 @@ public class QueryAllLawsService {
                         .lawId(law.getId())
                         .lawSerialNumber(law.getLawSerialNumber())
                         .lawTitle(law.getLawTitle())
-                        .lawContent(law.getLawContent())
-                        .promulgationDate(law.getPromulgationDate())
-                        .enforcementDate(law.getEnforcementDate())
                         .build())
                 .collect(Collectors.toList());
 
