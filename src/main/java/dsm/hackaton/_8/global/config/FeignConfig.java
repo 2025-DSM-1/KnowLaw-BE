@@ -17,7 +17,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.beans.factory.ObjectFactory;
 
-@EnableFeignClients(basePackages = "dsm.hackaton._8.global.config")
+@EnableFeignClients(basePackages = "dsm.hackaton._8")
 @Configuration
 @Import(FeignClientErrorDecoder.class)
 public class FeignConfig {
