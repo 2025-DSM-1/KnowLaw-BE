@@ -1,4 +1,4 @@
-package dsm.hackaton._8.infrastructure.feign.config;
+package dsm.hackaton._8.global.config;
 
 import dsm.hackaton._8.infrastructure.feign.FeignClientErrorDecoder;
 import feign.Logger;

@@ -1,4 +1,4 @@
-package dsm.hackaton._8.infrastructure.feign.exception;
+package dsm.hackaton._8.global.exception;
 
 import dsm.hackaton._8.global.error.exception.DSMException;
 import dsm.hackaton._8.global.error.exception.ErrorCode;
