@@ -15,14 +15,14 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
     open-in-view: false
 
-  jwt:
-    secretKey: ${JWT_SECRET}
-    header: ${HEADER}
-    prefix: ${PREFIX}
-    accessExp: ${ACCESS_EXP}
-    refreshExp: ${REFRESH_EXP}
+jwt:
+  secretKey: ${JWT_SECRET}
+  header: ${HEADER}
+  prefix: ${PREFIX}
+  accessExp: ${ACCESS_EXP}
+  refreshExp: ${REFRESH_EXP}
 
-  data:
-    redis:
-      port: ${REDIS_PORT}
-      host: ${REDIS_HOST}
+data:
+  redis:
+    port: ${REDIS_PORT}
+    host: ${REDIS_HOST}
