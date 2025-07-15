@@ -31,4 +31,15 @@ public class EmailVerification {
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
+
+    public EmailVerification(String email, String authCode) {
+        this.email = email;
+        this.authCode = authCode;
+        this.isVerified = false;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public void updateAuthCode(String authCode) {
+        this.authCode = authCode;
+    }
 }
