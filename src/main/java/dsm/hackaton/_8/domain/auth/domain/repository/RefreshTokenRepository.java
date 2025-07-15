@@ -1,5 +1,6 @@
-package dsm.hackaton._8.domain.auth.domain;
+package dsm.hackaton._8.domain.auth.domain.repository;
 
+import dsm.hackaton._8.domain.auth.domain.RefreshToken;
 import org.springframework.data.repository.CrudRepository;
 
 public interface RefreshTokenRepository extends CrudRepository<Long, RefreshToken> {
