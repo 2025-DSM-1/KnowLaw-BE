@@ -18,11 +18,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SaveLawsService {
 
-    private LawRepository lawRepository;
+    private final LawRepository lawRepository;
 
-    private LawOpenApiClient lawOpenApiClient;
+    private final LawOpenApiClient lawOpenApiClient;
 
-    private LawSummaryClient lawSummaryClient;
+    private final LawSummaryClient lawSummaryClient;
 
     @Transactional
     public void execute() {
