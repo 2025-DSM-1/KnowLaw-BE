@@ -31,6 +31,7 @@ public class Comment {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private CommentType commentType;
 
     @Column(name = "content", nullable = false)
