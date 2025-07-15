@@ -1,6 +1,6 @@
 package dsm.hackaton._8.infrastructure.feign;
 
-import dsm.hackaton._8.infrastructure.feign.exception.RequestFailToOtherServerException;
+import dsm.hackaton._8.global.exception.RequestFailToOtherServerException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
