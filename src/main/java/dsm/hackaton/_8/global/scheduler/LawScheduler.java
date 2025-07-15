@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class LawScheduler {
 
-    private SaveLawsService saveLawsService;
+    private final SaveLawsService saveLawsService;
 
     @Scheduled(cron = "0 */5 * * * ?")
     public void saveLawsEveryFiveMinutes() {
