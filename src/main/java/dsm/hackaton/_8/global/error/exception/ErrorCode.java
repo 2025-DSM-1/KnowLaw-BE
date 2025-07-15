@@ -11,6 +11,7 @@ public enum ErrorCode {
 
     BAD_REQUEST(400, "bad request"),
     INVALID_TOKEN_EXCEPTION(401, "invalid token exception"),
+    EXPIRED_TOKEN_EXCEPTION(401,"expired token exception"),
     USER_NOT_FOUND(404, "user not found"),
     INTERNAL_SERVER_ERROR(500, "server error");
 
