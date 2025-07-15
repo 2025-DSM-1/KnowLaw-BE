@@ -1,4 +1,4 @@
-package dsm.hackaton._8.global.scheduler;
+package dsm.hackaton._8.infrastructure.scheduler;
 
 import dsm.hackaton._8.domain.law.service.SaveLawsService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,7 @@ public class LawScheduler {
 
     private final SaveLawsService saveLawsService;
 
-    @Scheduled(cron = "0 */5 * * * ?")
+    @Scheduled(cron = "0 */5 * * * ?", zone = "Asia/Seoul")
     public void saveLawsEveryFiveMinutes() {
         saveLawsService.execute();
     }
