@@ -30,8 +30,8 @@ public class CreateCommentService {
         Comment comment = Comment.builder()
                 .commentType(request.getCommentType())
                 .content(request.getContent())
-                .userId(user)
-                .lawId(law)
+                .user(user)
+                .law(law)
                 .build();
 
         commentRepository.save(comment);
