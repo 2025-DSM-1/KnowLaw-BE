@@ -25,32 +25,34 @@ public class Law {
     private Long id;
 
     @Column(name = "law_serial_number", nullable = false)
-    private int lawSerialNumber;
+    private int lawSerialNumber;  // 의안번호 open pai
 
     @Column(name = "law_title", nullable = false)
-    private String lawTitle;
+    private String lawTitle;  // 의안제목 open api
 
-    @Column(name = "law_content", nullable = false)
-    private String lawContent;
+    //@Column(name = "law_content", nullable = false)
+    //private String lawContent;  // python server 한 줄 요약? 보류
 
     @Column(name = "law_summary_content", nullable = false)
-    private String lawSummaryContent;
+    private String lawSummaryContent;  // 파이썬 서버에서 받아온 내용 저장
 
     @Column(name = "law_status", nullable = false)
-    private String lawStatus;
+    private String lawStatus;  // 오픈 api
 
     @Column(name = "proposition_date", nullable = false)
-    private LocalDate propositionDate;
+    private LocalDate propositionDate; // open api 발의일 = 제안일자
 
-    @Column(name = "promulgation_date", nullable = false)
-    private LocalDate promulgationDate;
+    // 받기 어려움
+    //@Column(name = "promulgation_date", nullable = false)
+    //private LocalDate promulgationDate;  // open api 공포일
 
-    @Column(name = "enforcement_date", nullable = false)
-    private LocalDate enforcementDate;
+    // 받기 어려움
+    //@Column(name = "enforcement_date", nullable = false)
+    //private LocalDate enforcementDate;  // open api  시행일
 
     @Column(name = "background_info", nullable = false)
-    private String backgroundInfo;
+    private String backgroundInfo; // python server
 
     @Column(name = "example", nullable = false)
-    private String example;
+    private String example;  // python server
 }
