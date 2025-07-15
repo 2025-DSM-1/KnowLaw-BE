@@ -37,7 +37,7 @@ public class QueryAllCommentsService {
                         .commentType(comment.getCommentType())
                         .voteType(userVote.getVoteType())
                         .content(comment.getContent())
-                        .author(comment.getUserId().getName())
+                        .author(comment.getUser().getName())
                         .build())
                 .collect(Collectors.toList());
 
