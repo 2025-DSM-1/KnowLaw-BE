@@ -26,3 +26,7 @@ data:
   redis:
     port: ${REDIS_PORT}
     host: ${REDIS_HOST}
+
+openApi:
+  law:
+    url: ${LAW_URL}
