@@ -3,6 +3,8 @@ package dsm.hackaton._8.global.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dsm.hackaton._8.global.security.jwt.JwtProvider;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -54,5 +56,10 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public JavaMailSender mailSender() {
+        return new JavaMailSenderImpl();
     }
 }
