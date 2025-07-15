@@ -30,15 +30,27 @@ public class Law {
     @Column(name = "law_title", nullable = false)
     private String lawTitle;
 
-    @Column(name = "law-content", nullable = false)
+    @Column(name = "law_content", nullable = false)
     private String lawContent;
+
+    @Column(name = "law_summary_content", nullable = false)
+    private String lawSummaryContent;
 
     @Column(name = "law_status", nullable = false)
     private String lawStatus;
+
+    @Column(name = "proposition_date", nullable = false)
+    private LocalDate propositionDate;
 
     @Column(name = "promulgation_date", nullable = false)
     private LocalDate promulgationDate;
 
     @Column(name = "enforcement_date", nullable = false)
     private LocalDate enforcementDate;
+
+    @Column(name = "background_info", nullable = false)
+    private String backgroundInfo;
+
+    @Column(name = "example", nullable = false)
+    private String example;
 }
