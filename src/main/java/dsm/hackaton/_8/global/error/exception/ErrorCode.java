@@ -10,6 +10,7 @@ import lombok.Getter;
 public enum ErrorCode {
 
     BAD_REQUEST(400, "bad request"),
+    REQUEST_FAIL_TO_OTHER_SERVER(400, "Request fail to other server"),
     EMAIL_NOT_VERIFIED(400, "email not verified"),
     INVALID_TOKEN_EXCEPTION(401, "invalid token exception"),
     EXPIRED_TOKEN_EXCEPTION(401,"expired token exception"),
