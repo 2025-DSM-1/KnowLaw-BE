@@ -7,6 +7,7 @@ import dsm.hackaton._8.domain.auth.presentation.dto.response.TokenResponse;
 import dsm.hackaton._8.domain.auth.domain.repository.RefreshTokenRepository;
 import dsm.hackaton._8.global.security.auth.AuthDetailsService;
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +16,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.SecretKey;
+import java.util.Base64;
 import java.util.Date;
 
 @RequiredArgsConstructor
@@ -22,14 +25,11 @@ import java.util.Date;
 public class JwtProvider {
 
     private final JwtProperties jwtProperties;
-
     private final AuthDetailsService authDetailsService;
-
     private final RefreshTokenRepository refreshTokenRepository;
 
     private static final String ACCESS_KEY = "access_token";
     private static final String REFRESH_KEY = "refresh_token";
-    private static final String TOKEN_TYPE = "typ";
 
     public TokenResponse generateToken(String email) {
         String accessToken = generateToken(email, ACCESS_KEY, jwtProperties.getAccessExp());
@@ -48,8 +48,8 @@ public class JwtProvider {
     private String generateToken(String email, String type, Long exp) {
         return Jwts.builder()
                 .setSubject(email)
-                .setHeaderParam(TOKEN_TYPE, type)
-                .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
+                .setHeaderParam("typ", type)
+                .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS256))
                 .setExpiration(new Date(System.currentTimeMillis() + exp * 1000))
                 .setIssuedAt(new Date())
                 .compact();
@@ -80,12 +80,19 @@ public class JwtProvider {
     }
 
     public boolean isNotRefreshToken(String token) {
-        return !REFRESH_KEY.equals(getJws(token).getHeader().get(TOKEN_TYPE).toString());
+        return !REFRESH_KEY.equals(getJws(token).getHeader().get("typ").toString());
     }
 
     private Jws<Claims> getJws(String token) {
         try {
-            return Jwts.parser().setSigningKey(jwtProperties.getSecretKey()).parseClaimsJws(token);
+            byte[] keyBytes = Base64.getDecoder().decode(jwtProperties.getSecretKey());
+            SecretKey key = Keys.hmacShaKeyFor(keyBytes);
+
+            return Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token);
+
         } catch (ExpiredJwtException e) {
             throw ExpiredTokenException.EXCEPTION;
         } catch (Exception e) {
