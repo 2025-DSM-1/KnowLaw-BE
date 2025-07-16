@@ -11,30 +11,15 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
-    environment:
-      - ACCESS_EXP=3600
-      - DB_HOST=mysql
-      - DB_NAME=2025DSMHackaton
-      - DB_PASSWORD=modooboiroo1766
-      - DB_PORT=3306
-      - DB_USERNAME=root
-      - HEADER=Authorization
-      - JPA_FORMAT_SQL=true
-      - JPA_HIBERNATE_DDL_AUTO=create
-      - JPA_SHOW_SQL=true
-      - JWT_SECRET=alasdktkdokqkdtnldkasdadddddddddddddddddddddd
-      - LAW_URL=http://apis.data.go.kr/9710000/BillInfoService2/getBillInfoList?serviceKey=s%2Fyzd1uvOR0oi9ffFw1%2FV88CpA9Cf70T6BPyjmL%2Flc%2BzLw%2FuJT3MN0Nf%2F9Lp8I0PNdkhJHzXxBAG50z1pZ0Bjw%3D%3D&pageNo=1&numOfRows=20
-      - PYTHON_BASE_URL=https://dsm-hackathon-1-ai.onrender.com
-      - MAIL_PASSWORD=ivnz diux pzzw nnvg
-      - MAIL_USERNAME=mandoo4137@gmail.com
+    env_file:
+      - .env
     restart: always
 
   mysql:
     image: mysql:8.0
     container_name: mysql
-    environment:
-      MYSQL_DATABASE: 2025DSMHackaton
-      MYSQL_ROOT_PASSWORD: modooboiroo1766
+    env_file:
+      - .env
     ports:
       - "3306:3306"
     volumes:
