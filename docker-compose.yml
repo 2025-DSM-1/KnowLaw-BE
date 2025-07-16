@@ -13,9 +13,25 @@ services:
         condition: service_started
     env_file:
       - .env
-    restart: always
     environment:
       - TZ=Asia/Seoul
+      - JWT_SECRET=${JWT_SECRET}
+      - HEADER=${HEADER}
+      - PREFIX=${PREFIX}
+      - ACCESS_EXP=${ACCESS_EXP}
+      - REFRESH_EXP=${REFRESH_EXP}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - MAIL_USERNAME=${MAIL_USERNAME}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - LAW_URL=${LAW_URL}
+      - PYTHON_BASE_URL=${PYTHON_BASE_URL}
+    restart: always
 
   mysql:
     image: mysql:8.0
