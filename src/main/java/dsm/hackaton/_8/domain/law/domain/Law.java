@@ -1,11 +1,14 @@
 package dsm.hackaton._8.domain.law.domain;
 
 import dsm.hackaton._8.domain.law.presentatoin.dto.response.LawSummaryContentResponse;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,8 +38,9 @@ public class Law {
     @Column(name = "law_content", nullable = false)
     private String lawContent;   // python server 한 줄 요약
 
-    @Column(name = "law_summary_content", nullable = false)
-    private List<LawSummaryContentResponse> lawSummaryContent;  // 파이썬 서버에서 받아온 내용 저장
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "law_id")
+    private List<LawSummaryContent> lawSummaryContent;  // 파이썬 서버에서 받아온 내용 저장
 
     @Column(name = "law_status", nullable = false)
     private String lawStatus;  // 오픈 api
@@ -65,7 +69,7 @@ public class Law {
     public void updateLaw(
             String lawTitle,
             String lawContent,
-            List<LawSummaryContentResponse> lawSummaryContent,
+            List<LawSummaryContent> lawSummaryContent,
             String lawStatus,
             LocalDate propositionDate,
             LocalDate promulgationDate,
