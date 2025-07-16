@@ -9,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,23 +25,16 @@ public class QueryLawDetailService {
                 .lawId(law.getId())
                 .lawTitle(law.getLawTitle())
                 .lawStatus(law.getLawStatus())
-                .lawSummaryContent(parseLawSummaryContent(law.getLawSummaryContent()))
+                .lawSummaryContent(
+                        law.getLawSummaryContent().stream()
+                                .map(content -> LawSummaryContentResponse.builder()
+                                    .summaryElement(content.getSummaryElement())
+                                    .build())
+                                .collect(Collectors.toList())
+                )
                 .propositionDate(law.getPropositionDate())
                 .backgroundInfo(law.getBackgroundInfo())
                 .example(law.getExample())
                 .build();
-    }
-
-    private List<LawSummaryContentResponse> parseLawSummaryContent(String summaryContent) {
-        String[] sentences = summaryContent.split("\\.");
-
-        return Arrays.stream(sentences)
-                .map(String::trim)
-                .filter(sentence -> !sentence.isEmpty())
-                .limit(3)
-                .map(sentence -> LawSummaryContentResponse.builder()
-                        .summaryElement(sentence + ".")
-                        .build())
-                .collect(Collectors.toList());
     }
 }
