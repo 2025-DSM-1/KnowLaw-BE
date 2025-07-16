@@ -49,7 +49,9 @@ public class JwtProvider {
         return Jwts.builder()
                 .setSubject(email)
                 .setHeaderParam("typ", type)
-                .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS256))
+                .signWith(Keys.hmacShaKeyFor(
+                        Base64.getDecoder().decode(jwtProperties.getSecretKey()))
+                        , SignatureAlgorithm.HS256)
                 .setExpiration(new Date(System.currentTimeMillis() + exp * 1000))
                 .setIssuedAt(new Date())
                 .compact();
