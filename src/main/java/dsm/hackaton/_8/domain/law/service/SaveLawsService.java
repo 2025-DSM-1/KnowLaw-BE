@@ -54,7 +54,7 @@ public class SaveLawsService {
                         .lawStatus(lawApiResponseElement.getLawStatus())
                         .propositionDate(lawApiResponseElement.getPropositionDate())
                         .promulgationDate(lawApiResponseElement.getPropositionDate())
-                        .enforcementDate(lawApiResponseElement.getLawResult())
+                        .resolutionResult(lawApiResponseElement.getLawResult())
                         .backgroundInfo(lawSummaryResponse.getBackgroundInfo())
                         .example(lawSummaryResponse.getExample())
                         .agreeLogic(lawSummaryResponse.getAgreeLogic())
