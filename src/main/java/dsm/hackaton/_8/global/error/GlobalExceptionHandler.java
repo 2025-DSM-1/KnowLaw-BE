@@ -1,5 +1,6 @@
 package dsm.hackaton._8.global.error;
 
+import dsm.hackaton._8.domain.email.exception.EmailSendFailedException;
 import dsm.hackaton._8.global.error.exception.DSMException;
 import dsm.hackaton._8.global.error.exception.ErrorCode;
 import org.hibernate.exception.ConstraintViolationException;
@@ -75,5 +76,14 @@ public class GlobalExceptionHandler {
         ErrorResponse response = ErrorResponse.of(errorCode.getMessage(), errorCode.getStatusCode());
 
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(EmailSendFailedException.class)
+    public ResponseEntity<ErrorResponse> handleEmailSendFailed(EmailSendFailedException e) {
+        ErrorCode errorCode = ErrorCode.EMAIL_SEND_FAILED;
+        ErrorResponse response = ErrorResponse.of(errorCode.getMessage(), errorCode.getStatusCode());
+
+        return new ResponseEntity<>(response, HttpStatus.SERVICE_UNAVAILABLE);
+
     }
 }
