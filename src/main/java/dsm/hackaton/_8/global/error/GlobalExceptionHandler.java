@@ -17,7 +17,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(DSMException.class)
-    public ResponseEntity<ErrorResponse> handleQintException(DSMException e) {
+    public ResponseEntity<ErrorResponse> handleDSMException(DSMException e) {
         ErrorCode errorCode = e.getErrorCode();
         ErrorResponse response = ErrorResponse.of(errorCode.getMessage(), errorCode.getStatusCode());
 
