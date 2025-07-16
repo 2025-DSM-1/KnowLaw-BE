@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "lawSummaryClient", url = "${python.api.url}")
 public interface LawSummaryClient {
 
-    @PostMapping("/law/summary")
+    @PostMapping(value = "/law/summary")
     LawSummaryResponse summarizeLaw(@RequestBody LawSummaryRequest request);
 }
