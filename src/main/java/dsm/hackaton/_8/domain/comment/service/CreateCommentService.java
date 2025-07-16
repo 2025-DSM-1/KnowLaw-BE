@@ -12,14 +12,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class CreateCommentService {
 
     private final CommentRepository commentRepository;
-
     private final UserFacade userFacade;
-
     private final LawRepository lawRepository;
 
     @Transactional
@@ -32,6 +32,7 @@ public class CreateCommentService {
                 .content(request.getContent())
                 .user(user)
                 .law(law)
+                .createdAt(LocalDateTime.now())
                 .build();
 
         commentRepository.save(comment);
