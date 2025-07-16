@@ -42,6 +42,8 @@ public class SaveLawsService {
                     .propositionDate(lawApiResponseElement.getPropositionDate())
                     .backgroundInfo(lawSummaryResponse.getBackgroundInfo())
                     .example(lawSummaryResponse.getExample())
+                    .agreeLogic(lawSummaryResponse.getAgreeLogic())
+                    .disagreeLogic(lawSummaryResponse.getDisagreeLogic())
                     .build();
 
             lawRepository.save(law);
