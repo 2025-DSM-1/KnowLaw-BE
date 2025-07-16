@@ -2,6 +2,7 @@ package dsm.hackaton._8.domain.law.service;
 
 import dsm.hackaton._8.domain.event.LawUpdateEvent;
 import dsm.hackaton._8.domain.law.domain.Law;
+import dsm.hackaton._8.domain.law.domain.LawSummaryContent;
 import dsm.hackaton._8.domain.law.domain.repository.LawRepository;
 import dsm.hackaton._8.infrastructure.feign.client.LawOpenApiClient;
 import dsm.hackaton._8.infrastructure.feign.client.LawSummaryClient;
@@ -39,11 +40,17 @@ public class SaveLawsService {
             Law existingLaw = lawRepository.findByLawSerialNumber(lawSerialNumber).orElse(null);
 
             if (existingLaw == null) {
+                List<LawSummaryContent> summaryContentList = lawSummaryResponse.getLawSummaryContent().stream()
+                        .map(summary -> LawSummaryContent.builder()
+                                .summaryElement(summary.getSummaryElement())
+                                .build())
+                        .toList();
+
                 Law law = Law.builder()
                         .lawSerialNumber(lawSerialNumber)
                         .lawTitle(lawApiResponseElement.getLawTitle())
                         .lawContent(lawSummaryResponse.getLawContent())
-                        .lawSummaryContent(lawSummaryResponse.getLawSummaryContent())
+                        .lawSummaryContent(summaryContentList)
                         .lawStatus(lawApiResponseElement.getLawStatus())
                         .propositionDate(lawApiResponseElement.getPropositionDate())
                         .promulgationDate(lawApiResponseElement.getPropositionDate())
@@ -58,6 +65,12 @@ public class SaveLawsService {
                 continue;
             }
 
+            List<LawSummaryContent> newSummaryContent = lawSummaryResponse.getLawSummaryContent().stream()
+                    .map(summary -> LawSummaryContent.builder()
+                            .summaryElement(summary.getSummaryElement())
+                            .build())
+                    .toList();
+
             boolean isUpdated = !existingLaw.getLawSummaryContent().equals(lawSummaryResponse.getLawSummaryContent()) ||
                     !existingLaw.getAgreeLogic().equals(lawSummaryResponse.getAgreeLogic()) ||
                     !existingLaw.getDisagreeLogic().equals(lawSummaryResponse.getDisagreeLogic());
@@ -66,7 +79,7 @@ public class SaveLawsService {
                 existingLaw.updateLaw(
                         lawApiResponseElement.getLawTitle(),
                         lawSummaryResponse.getLawContent(),
-                        lawSummaryResponse.getLawSummaryContent(),
+                        newSummaryContent,
                         lawApiResponseElement.getLawStatus(),
                         lawApiResponseElement.getPropositionDate(),
                         lawApiResponseElement.getPropositionDate(),
