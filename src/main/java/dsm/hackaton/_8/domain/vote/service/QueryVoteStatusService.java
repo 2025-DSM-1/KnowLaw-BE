@@ -17,9 +17,12 @@ public class QueryVoteStatusService {
     public VoteLawResponse execute(Long lawId) {
         Vote vote = voteRepository.findVoteByLawId(lawId);
 
+        int agreePercentage = (int) Math.round((double) vote.getAgree() / vote.getTotalVote() * 100);
+        int disagreePercentage = (int) Math.round((double) vote.getDisagree() / vote.getTotalVote() * 100);
+
         return VoteLawResponse.builder()
-                .agree(vote.getAgree())
-                .disagree(vote.getDisagree())
+                .agree(agreePercentage)
+                .disagree(disagreePercentage)
                 .totalVote(vote.getTotalVote())
                 .build();
     }
