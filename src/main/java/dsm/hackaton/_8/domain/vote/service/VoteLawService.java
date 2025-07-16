@@ -9,6 +9,7 @@ import dsm.hackaton._8.domain.vote.domain.UserVote;
 import dsm.hackaton._8.domain.vote.domain.Vote;
 import dsm.hackaton._8.domain.vote.domain.repository.UserVoteRepository;
 import dsm.hackaton._8.domain.vote.domain.repository.VoteRepository;
+import dsm.hackaton._8.domain.vote.domain.type.VoteType;
 import dsm.hackaton._8.domain.vote.presentation.dto.request.VoteLawRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,11 +37,10 @@ public class VoteLawService {
                 .voteType(request.getVoteType())
                 .build();
 
-        switch (request.getVoteType()) {
-            case AGREE:
-                vote.incrementAgree();
-            default:
-                vote.incrementDisAgree();
+        if (request.getVoteType() == VoteType.AGREE) {
+            vote.incrementAgree();
+        } else {
+            vote.incrementDisAgree();
         }
 
         userVoteRepository.save(userVote);
