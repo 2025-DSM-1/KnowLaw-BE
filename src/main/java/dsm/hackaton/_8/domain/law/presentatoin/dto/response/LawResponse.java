@@ -18,5 +18,5 @@ public class LawResponse {
     private String lawTitle;
     private String lawContent;
     private LocalDate promulgationDate;
-    private LocalDate enforcementDate;
+    private String resolutionResult;
 }
