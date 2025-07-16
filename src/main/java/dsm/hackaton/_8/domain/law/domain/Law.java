@@ -1,5 +1,6 @@
 package dsm.hackaton._8.domain.law.domain;
 
+import dsm.hackaton._8.domain.law.presentatoin.dto.response.LawSummaryContentResponse;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -30,11 +32,11 @@ public class Law {
     @Column(name = "law_title", nullable = false)
     private String lawTitle;  // 의안제목 open api
 
-    //@Column(name = "law_content", nullable = false)
-    //private String lawContent;  // python server 한 줄 요약? 보류
+    @Column(name = "law_content", nullable = false)
+    private String lawContent;   // python server 한 줄 요약
 
     @Column(name = "law_summary_content", nullable = false)
-    private String lawSummaryContent;  // 파이썬 서버에서 받아온 내용 저장
+    private List<LawSummaryContentResponse> lawSummaryContent;  // 파이썬 서버에서 받아온 내용 저장
 
     @Column(name = "law_status", nullable = false)
     private String lawStatus;  // 오픈 api
@@ -42,13 +44,11 @@ public class Law {
     @Column(name = "proposition_date", nullable = false)
     private LocalDate propositionDate; // open api 발의일 = 제안일자
 
-    // 받기 어려움
-    //@Column(name = "promulgation_date", nullable = false)
-    //private LocalDate promulgationDate;  // open api 공포일
+    @Column(name = "promulgation_date", nullable = false)
+    private LocalDate promulgationDate;  // open api 공포일 -> 제안일자
 
-    // 받기 어려움
-    //@Column(name = "enforcement_date", nullable = false)
-    //private LocalDate enforcementDate;  // open api  시행일
+    @Column(name = "enforcement_date", nullable = false)
+    private String enforcementDate;  // open api  시행일 -> 의결결과
 
     @Column(name = "background_info", nullable = false)
     private String backgroundInfo; // python server
@@ -64,18 +64,24 @@ public class Law {
 
     public void updateLaw(
             String lawTitle,
-            String lawSummaryContent,
+            String lawContent,
+            List<LawSummaryContentResponse> lawSummaryContent,
             String lawStatus,
             LocalDate propositionDate,
+            LocalDate promulgationDate,
+            String enforcementDate,
             String backgroundInfo,
             String example,
             String agreeLogic,
             String disagreeLogic
     ) {
         this.lawTitle = lawTitle;
+        this.lawContent = lawContent;
         this.lawSummaryContent = lawSummaryContent;
         this.lawStatus = lawStatus;
         this.propositionDate = propositionDate;
+        this.promulgationDate = promulgationDate;
+        this.enforcementDate = enforcementDate;
         this.backgroundInfo = backgroundInfo;
         this.example = example;
         this.agreeLogic = agreeLogic;
