@@ -55,4 +55,10 @@ public class Law {
 
     @Column(name = "example", nullable = false)
     private String example;  // python server
+
+    @Column(name = "agree_logic", nullable = false)
+    private String agreeLogic;
+
+    @Column(name = "disagree_logic", nullable = false)
+    private String disagreeLogic;
 }
