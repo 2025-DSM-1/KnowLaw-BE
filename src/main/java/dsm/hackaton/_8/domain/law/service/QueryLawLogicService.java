@@ -19,7 +19,7 @@ public class QueryLawLogicService {
         Law law = lawRepository.findById(lawId).orElseThrow(() -> LawNotFoundException.EXCEPTION);
 
         return QueryLawLogicResponse.builder()
-                .lawId(lawId)
+                .lawId(law.getId())
                 .agreeLogic(law.getAgreeLogic())
                 .disagreeLogic(law.getDisagreeLogic())
                 .build();
