@@ -13,20 +13,20 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class EmailVerification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "auth_code", nullable = false)
+    @Column(nullable = false)
     private String authCode;
 
-    @Column(name = "is_verified", nullable = false)
+    @Column(nullable = false)
     private Boolean isVerified = false;
 
     @Column(nullable = false)
