@@ -28,7 +28,6 @@ public class SaveLawsService {
     @Transactional
     public void execute() {
         LawApiResponse lawApiResponses = lawOpenApiClient.getLaws();
-
         List<LawApiResponseElement> laws = lawApiResponses.getBody().getItems().getItemList();
 
         for (LawApiResponseElement lawApiResponseElement : laws) {
