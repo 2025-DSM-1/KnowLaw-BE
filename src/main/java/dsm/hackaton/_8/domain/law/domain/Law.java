@@ -24,7 +24,7 @@ public class Law {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "law_serial_number", nullable = false)
+    @Column(name = "law_serial_number", nullable = false, unique = true)
     private int lawSerialNumber;  // 의안번호 open pai
 
     @Column(name = "law_title", nullable = false)
@@ -61,4 +61,24 @@ public class Law {
 
     @Column(name = "disagree_logic", nullable = false)
     private String disagreeLogic;
+
+    public void updateLaw(
+            String lawTitle,
+            String lawSummaryContent,
+            String lawStatus,
+            LocalDate propositionDate,
+            String backgroundInfo,
+            String example,
+            String agreeLogic,
+            String disagreeLogic
+    ) {
+        this.lawTitle = lawTitle;
+        this.lawSummaryContent = lawSummaryContent;
+        this.lawStatus = lawStatus;
+        this.propositionDate = propositionDate;
+        this.backgroundInfo = backgroundInfo;
+        this.example = example;
+        this.agreeLogic = agreeLogic;
+        this.disagreeLogic = disagreeLogic;
+    }
 }
