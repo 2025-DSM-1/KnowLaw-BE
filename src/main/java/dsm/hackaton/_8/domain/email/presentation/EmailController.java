@@ -1,8 +1,8 @@
 package dsm.hackaton._8.domain.email.presentation;
 
-import dsm.hackaton._8.domain.email.presentation.dto.requset.CheckAuthCodeRequest;
-import dsm.hackaton._8.domain.email.presentation.dto.requset.EmailVerifyRequest;
-import dsm.hackaton._8.domain.email.presentation.dto.requset.SendAuthCodeRequest;
+import dsm.hackaton._8.domain.email.presentation.dto.request.CheckAuthCodeRequest;
+import dsm.hackaton._8.domain.email.presentation.dto.request.EmailVerifyRequest;
+import dsm.hackaton._8.domain.email.presentation.dto.request.SendAuthCodeRequest;
 import dsm.hackaton._8.domain.email.presentation.dto.response.CheckAuthCodeResponse;
 import dsm.hackaton._8.domain.email.presentation.dto.response.EmailVerifyResponse;
 import dsm.hackaton._8.domain.email.service.CheckAuthCodeService;
@@ -21,21 +21,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmailController {
 
     private final SendAuthCodeService sendAuthCodeService;
+
     private final CheckAuthCodeService checkAuthCodeService;
+
     private final CheckUsedEmailService checkUsedEmailService;
 
-    @PostMapping("/auth-code")
-    public void sendAuthCode(@RequestBody @Valid SendAuthCodeRequest request) {
-        sendAuthCodeService.execute(request);
+    @PostMapping("/send-authcode")
+    public void sendAuthCode(@RequestBody @Valid SendAuthCodeRequest sendAuthCodeRequest) {
+        sendAuthCodeService.execute(sendAuthCodeRequest);
     }
 
-    @PostMapping("/auth-code/verify")
-    public CheckAuthCodeResponse checkAuthCode(@RequestBody @Valid CheckAuthCodeRequest request) {
-        return checkAuthCodeService.execute(request);
+    @PostMapping("/check-authcode")
+    public CheckAuthCodeResponse checkAuthCode(@RequestBody @Valid CheckAuthCodeRequest checkAuthCodeRequest) {
+        return checkAuthCodeService.execute(checkAuthCodeRequest);
     }
 
-    @PostMapping("/verify")
-    public EmailVerifyResponse EmailVerify(@RequestBody @Valid EmailVerifyRequest request) {
-        return checkUsedEmailService.execute(request);
+    @PostMapping("/email-verify")
+    public EmailVerifyResponse EmailVerify(@RequestBody @Valid EmailVerifyRequest emailVerifyRequest) {
+        return checkUsedEmailService.execute(emailVerifyRequest);
     }
 }
