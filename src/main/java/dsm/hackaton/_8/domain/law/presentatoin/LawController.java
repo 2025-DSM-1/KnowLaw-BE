@@ -33,7 +33,7 @@ public class LawController {
         return queryLawDetailService.execute(lawId);
     }
 
-    @GetMapping("/{law-id}/logic")
+    @GetMapping("/logic/{law-id}")
     public QueryLawLogicResponse queryLawLogic(@PathVariable("law-id") Long lawId) {
         return queryLawLogicService.execute(lawId);
     }
