@@ -2,8 +2,10 @@ package dsm.hackaton._8.domain.law.presentatoin;
 
 import dsm.hackaton._8.domain.law.presentatoin.dto.response.QueryAllLawsResponse;
 import dsm.hackaton._8.domain.law.presentatoin.dto.response.QueryLawDetailResponse;
+import dsm.hackaton._8.domain.law.presentatoin.dto.response.QueryLawLogicResponse;
 import dsm.hackaton._8.domain.law.service.QueryAllLawsService;
 import dsm.hackaton._8.domain.law.service.QueryLawDetailService;
+import dsm.hackaton._8.domain.law.service.QueryLawLogicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,8 @@ public class LawController {
 
     private final QueryLawDetailService queryLawDetailService;
 
+    private final QueryLawLogicService queryLawLogicService;
+
     @GetMapping
     public QueryAllLawsResponse queryAllLaws() {
         return queryAllLawsService.execute();
@@ -27,5 +31,10 @@ public class LawController {
     @GetMapping("/{law-id}")
     public QueryLawDetailResponse queryLawDetailResponse(@PathVariable("law-id") Long lawId) {
         return queryLawDetailService.execute(lawId);
+    }
+
+    @GetMapping("/{law-id}/logic")
+    public QueryLawLogicResponse queryLawLogic(@PathVariable("law-id") Long lawId) {
+        return queryLawLogicService.execute(lawId);
     }
 }
