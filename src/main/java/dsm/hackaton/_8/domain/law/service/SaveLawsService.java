@@ -42,7 +42,7 @@ public class SaveLawsService {
                 Law law = Law.builder()
                         .lawSerialNumber(lawSerialNumber)
                         .lawTitle(lawApiResponseElement.getLawTitle())
-                        .lawSummaryContent(lawSummaryResponse.getLawSummary())
+                        .lawSummaryContent(lawSummaryResponse.getLawSummaryContent())
                         .lawStatus(lawApiResponseElement.getLawStatus())
                         .propositionDate(lawApiResponseElement.getPropositionDate())
                         .backgroundInfo(lawSummaryResponse.getBackgroundInfo())
@@ -55,14 +55,14 @@ public class SaveLawsService {
                 continue;
             }
 
-            boolean isUpdated = !existingLaw.getLawSummaryContent().equals(lawSummaryResponse.getLawSummary()) ||
+            boolean isUpdated = !existingLaw.getLawSummaryContent().equals(lawSummaryResponse.getLawSummaryContent()) ||
                     !existingLaw.getAgreeLogic().equals(lawSummaryResponse.getAgreeLogic()) ||
                     !existingLaw.getDisagreeLogic().equals(lawSummaryResponse.getDisagreeLogic());
 
             if (isUpdated) {
                 existingLaw.updateLaw(
                         lawApiResponseElement.getLawTitle(),
-                        lawSummaryResponse.getLawSummary(),
+                        lawSummaryResponse.getLawSummaryContent(),
                         lawApiResponseElement.getLawStatus(),
                         lawApiResponseElement.getPropositionDate(),
                         lawSummaryResponse.getBackgroundInfo(),
