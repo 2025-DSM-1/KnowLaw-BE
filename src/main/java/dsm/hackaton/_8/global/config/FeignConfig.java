@@ -2,6 +2,7 @@ package dsm.hackaton._8.global.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import dsm.hackaton._8.infrastructure.feign.FeignClientErrorDecoder;
 import feign.Logger;
 import feign.codec.Decoder;
@@ -15,7 +16,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
-import org.springframework.beans.factory.ObjectFactory;
 
 @EnableFeignClients(basePackages = "dsm.hackaton._8")
 @Configuration
@@ -36,8 +36,8 @@ public class FeignConfig {
     @Bean
     public Decoder feignDecoder() {
         ObjectMapper objectMapper = new XmlMapper(); // XML 전용 ObjectMapper
+        objectMapper.registerModule(new JavaTimeModule());
         HttpMessageConverter<?> converter = new MappingJackson2XmlHttpMessageConverter(objectMapper);
-        ObjectFactory<HttpMessageConverters> objectFactory = () -> new HttpMessageConverters(converter);
-        return new SpringDecoder(objectFactory);
+        return new SpringDecoder(() -> new HttpMessageConverters(converter));
     }
 }
