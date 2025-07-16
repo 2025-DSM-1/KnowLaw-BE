@@ -19,7 +19,8 @@ public enum ErrorCode {
     LAW_NOT_FOUND(404, "law not found"),
     USER_NOT_FOUND(404, "user not found"),
     USER_ALREADY_EXISTS(409, "user already exists"),
-    INTERNAL_SERVER_ERROR(500, "server error");
+    INTERNAL_SERVER_ERROR(500, "server error"),
+    EMAIL_SEND_FAILED(503, "email send failed.");
 
     private final int statusCode;
     private final String message;
