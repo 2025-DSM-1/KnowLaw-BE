@@ -28,8 +28,8 @@ public class QueryLawDetailService {
                 .lawSummaryContent(
                         law.getLawSummaryContent().stream()
                                 .map(content -> LawSummaryContentResponse.builder()
-                                    .summaryElement(content.getSummaryElement())
-                                    .build())
+                                        .summaryElement(content.getSummaryElement())
+                                        .build())
                                 .collect(Collectors.toList())
                 )
                 .propositionDate(law.getPropositionDate())
