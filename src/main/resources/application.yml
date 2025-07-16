@@ -18,8 +18,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${USER_MAIL}
-    password: ${USER_MAIL_PASSWORD}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     properties:
       mail:
         debug: true
@@ -48,3 +48,10 @@ openApi:
 python:
   api:
     url: ${PYTHON_BASE_URL}
+
+feign:
+  client:
+    config:
+      lawSummaryClient:  # 또는 특정 클라이언트 이름
+        connectTimeout: 10000   # 연결 시간 제한 (ms) – 5초
+        readTimeout: 15000     # 응답 대기 시간 제한 (ms) – 10초
