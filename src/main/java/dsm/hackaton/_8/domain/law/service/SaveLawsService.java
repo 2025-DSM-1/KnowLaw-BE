@@ -4,6 +4,8 @@ import dsm.hackaton._8.domain.event.LawUpdateEvent;
 import dsm.hackaton._8.domain.law.domain.Law;
 import dsm.hackaton._8.domain.law.domain.LawSummaryContent;
 import dsm.hackaton._8.domain.law.domain.repository.LawRepository;
+import dsm.hackaton._8.domain.vote.domain.Vote;
+import dsm.hackaton._8.domain.vote.domain.repository.VoteRepository;
 import dsm.hackaton._8.infrastructure.feign.client.LawOpenApiClient;
 import dsm.hackaton._8.infrastructure.feign.client.LawSummaryClient;
 import dsm.hackaton._8.infrastructure.feign.dto.request.LawSummaryRequest;
@@ -24,6 +26,7 @@ public class SaveLawsService {
     private final LawRepository lawRepository;
     private final LawOpenApiClient lawOpenApiClient;
     private final LawSummaryClient lawSummaryClient;
+    private final VoteRepository voteRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
 
     @Transactional
@@ -61,6 +64,14 @@ public class SaveLawsService {
                         .disagreeLogic(lawSummaryResponse.getDisagreeLogic())
                         .build();
 
+                Vote vote = Vote.builder()
+                        .agree(0)
+                        .disagree(0)
+                        .totalVote(0)
+                        .law(law)
+                        .build();
+
+                voteRepository.save(vote);
                 lawRepository.save(law);
                 continue;
             }
