@@ -1,4 +1,4 @@
-package dsm.hackaton._8.domain.email.presentation.dto.requset;
+package dsm.hackaton._8.domain.email.presentation.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
