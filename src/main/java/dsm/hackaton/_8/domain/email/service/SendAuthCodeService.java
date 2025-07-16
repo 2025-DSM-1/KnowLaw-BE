@@ -3,7 +3,7 @@ package dsm.hackaton._8.domain.email.service;
 import dsm.hackaton._8.domain.email.domain.EmailVerification;
 import dsm.hackaton._8.domain.email.domain.repository.EmailVerificationRepository;
 import dsm.hackaton._8.domain.email.facade.EmailVerificationFacade;
-import dsm.hackaton._8.domain.email.presentation.dto.requset.SendAuthCodeRequest;
+import dsm.hackaton._8.domain.email.presentation.dto.request.SendAuthCodeRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
