@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 public class TokenRefreshUtil {
 
     private final RefreshTokenRepository refreshTokenRepository;
-
     private final JwtProvider jwtProvider;
+    private final JwtProperties jwtProperties;
 
     public TokenResponse tokenRefresh(String token) {
         if (jwtProvider.isNotRefreshToken(token)) {
@@ -25,8 +25,9 @@ public class TokenRefreshUtil {
         RefreshToken refreshToken = refreshTokenRepository.findByToken(token)
                 .orElseThrow(() -> RefreshTokenNotFoundException.EXCEPTION);
 
-        String email = refreshToken.getEmail();
+        TokenResponse tokens = jwtProvider.generateToken(refreshToken.getEmail());
+        refreshToken.updateToken(tokens.getRefreshToken(), jwtProperties.getRefreshExp());
 
-        return jwtProvider.generateToken(email);
+        return tokens;
     }
 }
