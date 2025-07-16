@@ -9,6 +9,7 @@ import dsm.hackaton._8.domain.user.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -20,6 +21,7 @@ public class SignUpService {
 
     private final EmailVerificationFacade emailVerificationFacade;
 
+    @Transactional
     public void execute(SignUpRequest request) {
         String email = request.getEmail();
         String password = passwordEncoder.encode(request.getPassword());
