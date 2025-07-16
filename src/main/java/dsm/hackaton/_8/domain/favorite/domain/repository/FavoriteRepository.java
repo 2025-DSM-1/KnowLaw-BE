@@ -12,4 +12,6 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
     Favorite findByLawAndUser(Law law, User user);
 
     List<Favorite> findAllByUser(User user);
+
+    List<Favorite> findAllByLaw(Law law);
 }
