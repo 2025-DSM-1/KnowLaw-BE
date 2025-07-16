@@ -1,6 +1,5 @@
 package dsm.hackaton._8.domain.email.service;
 
-import dsm.hackaton._8.domain.email.exception.EmailSendFailedException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,15 +12,12 @@ public class EmailService {
     private final JavaMailSender mailSender;
 
     public void sendAuthCode(String to, String authCode) {
-        try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(to);
-            message.setSubject("이메일 인증 코드");
-            message.setText("인증코드: " + authCode);
-            mailSender.send(message);
-        } catch (Exception e) {
-            throw EmailSendFailedException.EXCEPTION;
-        }
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject("이메일 인증 코드");
+        message.setText("인증코드: " + authCode);
+
+        mailSender.send(message);
     }
 
     public void sendEmail(String to, String subject, String content) {
