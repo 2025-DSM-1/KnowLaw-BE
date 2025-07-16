@@ -1,6 +1,5 @@
 package dsm.hackaton._8.domain.law.domain;
 
-import dsm.hackaton._8.domain.law.presentatoin.dto.response.LawSummaryContentResponse;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
