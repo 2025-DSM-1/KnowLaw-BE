@@ -51,7 +51,7 @@ public class Law {
     private LocalDate promulgationDate;  // open api 공포일 -> 제안일자
 
     @Column(name = "enforcement_date", nullable = false)
-    private String enforcementDate;  // open api  시행일 -> 의결결과
+    private String resolutionResult;  // open api  의결결과
 
     @Column(name = "background_info", nullable = false)
     private String backgroundInfo; // python server
@@ -72,7 +72,7 @@ public class Law {
             String lawStatus,
             LocalDate propositionDate,
             LocalDate promulgationDate,
-            String enforcementDate,
+            String resolutionResult,
             String backgroundInfo,
             String example,
             String agreeLogic,
@@ -84,7 +84,7 @@ public class Law {
         this.lawStatus = lawStatus;
         this.propositionDate = propositionDate;
         this.promulgationDate = promulgationDate;
-        this.enforcementDate = enforcementDate;
+        this.resolutionResult = resolutionResult;
         this.backgroundInfo = backgroundInfo;
         this.example = example;
         this.agreeLogic = agreeLogic;
