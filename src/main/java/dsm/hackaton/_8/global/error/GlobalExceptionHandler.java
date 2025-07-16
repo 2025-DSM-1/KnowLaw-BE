@@ -6,6 +6,7 @@ import dsm.hackaton._8.global.error.exception.ErrorCode;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -85,5 +86,11 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(response, HttpStatus.SERVICE_UNAVAILABLE);
 
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        ErrorResponse response = ErrorResponse.of(e.getMessage(), 400);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }
