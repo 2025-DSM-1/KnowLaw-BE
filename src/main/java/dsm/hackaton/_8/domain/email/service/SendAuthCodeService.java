@@ -32,7 +32,7 @@ public class SendAuthCodeService {
             emailVerificationRepository.save(new EmailVerification(email, authCode));
         }
 
-        emailService.sendEmail(email, authCode);
+        emailService.sendAuthCode(email, authCode);
     }
 
     private String generateAuthCode() {
