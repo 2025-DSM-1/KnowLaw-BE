@@ -33,7 +33,4 @@ public class LawApiResponseElement {
 
     @JacksonXmlProperty(localName = "procStageCd")
     private String lawStatus; // 심사 진행 상태 (Review Progress Status)
-
-//    @JacksonXmlProperty(localName = "")
-//    private String procDt;  // 의결 일자 (Resolution Date)
 }
