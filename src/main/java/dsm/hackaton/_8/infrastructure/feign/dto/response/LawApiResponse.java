@@ -20,6 +20,7 @@ public class LawApiResponse {
 
     @Getter
     @NoArgsConstructor
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Body {
         @JacksonXmlProperty(localName = "items")
         private Items items;
@@ -27,6 +28,7 @@ public class LawApiResponse {
 
     @Getter
     @NoArgsConstructor
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Items {
         @JacksonXmlElementWrapper(useWrapping = false)
         @JacksonXmlProperty(localName = "item")
