@@ -21,9 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmailController {
 
     private final SendAuthCodeService sendAuthCodeService;
-
     private final CheckAuthCodeService checkAuthCodeService;
-
     private final CheckUsedEmailService checkUsedEmailService;
 
     @PostMapping("/auth-code")
