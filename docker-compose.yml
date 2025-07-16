@@ -14,6 +14,8 @@ services:
     env_file:
       - .env
     restart: always
+    environment:
+      - TZ=Asia/Seoul
 
   mysql:
     image: mysql:8.0
@@ -28,6 +30,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - TZ=Asia/Seoul
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 10s
@@ -41,6 +44,8 @@ services:
     ports:
       - "6379:6379"
     restart: always
+    environment:
+      - TZ=Asia/Seoul
 
 volumes:
   mysql-data:
