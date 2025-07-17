@@ -2,6 +2,7 @@ package dsm.hackaton._8.domain.favorite.service;
 
 import dsm.hackaton._8.domain.favorite.domain.Favorite;
 import dsm.hackaton._8.domain.favorite.domain.repository.FavoriteRepository;
+import dsm.hackaton._8.domain.favorite.exception.AlreadyFavoriteException;
 import dsm.hackaton._8.domain.law.domain.Law;
 import dsm.hackaton._8.domain.law.domain.repository.LawRepository;
 import dsm.hackaton._8.domain.law.exception.LawNotFoundException;
@@ -25,6 +26,11 @@ public class AddFavoriteService {
     public void execute(Long lawId) {
         Law law = lawRepository.findById(lawId).orElseThrow(() -> LawNotFoundException.EXCEPTION);
         User user = userFacade.getCurrentUser();
+
+        boolean alreadyFavorite = favoriteRepository.existsByUserAndLaw(user, law);
+        if (alreadyFavorite) {
+            throw AlreadyFavoriteException.EXCEPTION;
+        }
 
         Favorite favorite = Favorite.builder()
                 .user(user)
