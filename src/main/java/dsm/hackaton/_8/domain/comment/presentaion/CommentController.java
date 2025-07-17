@@ -27,8 +27,8 @@ public class CommentController {
         createCommentService.execute(request, lawId);
     }
 
-    @GetMapping
-    public QueryAllCommentsResponse queryAllComments() {
-        return queryAllCommentsService.execute();
+    @GetMapping("/{law-id}")
+    public QueryAllCommentsResponse queryAllComments(@PathVariable("law-id") Long lawId) {
+        return queryAllCommentsService.execute(lawId);
     }
 }
