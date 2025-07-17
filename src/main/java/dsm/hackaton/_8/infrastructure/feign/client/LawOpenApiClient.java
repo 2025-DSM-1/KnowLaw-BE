@@ -2,6 +2,7 @@ package dsm.hackaton._8.infrastructure.feign.client;
 
 import dsm.hackaton._8.global.config.FeignConfig;
 import dsm.hackaton._8.infrastructure.feign.dto.response.LawApiResponse;
+import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,5 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface LawOpenApiClient {
 
     @GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
+    @Headers("Content-Type: application/xml")
     LawApiResponse getLaws();
 }
