@@ -37,6 +37,16 @@ public class SaveLawsService {
         for (LawApiResponseElement lawApiResponseElement : laws) {
             int lawSerialNumber = lawApiResponseElement.getLawSerialNumber();
 
+            if (lawApiResponseElement.getMainContent() == null) {
+                continue;
+            }
+
+            try {
+                Thread.sleep(100000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+
             LawSummaryRequest lawSummaryRequest = new LawSummaryRequest(lawApiResponseElement.getMainContent());
             LawSummaryResponse lawSummaryResponse = lawSummaryClient.summarizeLaw(lawSummaryRequest);
 
@@ -64,44 +74,45 @@ public class SaveLawsService {
                         .disagreeLogic(lawSummaryResponse.getDisagreeLogic())
                         .build();
 
+                // 먼저 law 저장
+                Law savedLaw = lawRepository.save(law);
+
                 Vote vote = Vote.builder()
                         .agree(0)
                         .disagree(0)
                         .totalVote(0)
-                        .law(law)
+                        .law(savedLaw) // 저장된 law 사용
                         .build();
 
                 voteRepository.save(vote);
-                lawRepository.save(law);
-                continue;
             }
 
-            List<LawSummaryContent> newSummaryContent = lawSummaryResponse.getLawSummaryContent().stream()
-                    .map(summary -> LawSummaryContent.builder()
-                            .summaryElement(summary.getSummaryElement())
-                            .build())
-                    .toList();
-
-            boolean isUpdated = !existingLaw.getLawSummaryContent().equals(lawSummaryResponse.getLawSummaryContent()) ||
-                    !existingLaw.getAgreeLogic().equals(lawSummaryResponse.getAgreeLogic()) ||
-                    !existingLaw.getDisagreeLogic().equals(lawSummaryResponse.getDisagreeLogic());
-
-            if (isUpdated) {
-                existingLaw.updateLaw(
-                        lawApiResponseElement.getLawTitle(),
-                        lawSummaryResponse.getLawContent(),
-                        newSummaryContent,
-                        lawApiResponseElement.getLawStatus(),
-                        lawApiResponseElement.getPropositionDate(),
-                        lawApiResponseElement.getPropositionDate(),
-                        lawApiResponseElement.getLawResult(),
-                        lawSummaryResponse.getBackgroundInfo(),
-                        lawSummaryResponse.getExample(),
-                        lawSummaryResponse.getAgreeLogic(),
-                        lawSummaryResponse.getDisagreeLogic()
-                );
-                applicationEventPublisher.publishEvent(new LawUpdateEvent(existingLaw));
-            }
+//            List<LawSummaryContent> newSummaryContent = lawSummaryResponse.getLawSummaryContent().stream()
+//                    .map(summary -> LawSummaryContent.builder()
+//                            .summaryElement(summary.getSummaryElement())
+//                            .build())
+//                    .toList();
+//
+//            boolean isUpdated = !existingLaw.getLawSummaryContent().equals(lawSummaryResponse.getLawSummaryContent()) ||
+//                    !existingLaw.getAgreeLogic().equals(lawSummaryResponse.getAgreeLogic()) ||
+//                    !existingLaw.getDisagreeLogic().equals(lawSummaryResponse.getDisagreeLogic());
+//
+//            if (isUpdated) {
+//                existingLaw.updateLaw(
+//                        lawApiResponseElement.getLawTitle(),
+//                        lawSummaryResponse.getLawContent(),
+//                        newSummaryContent,
+//                        lawApiResponseElement.getLawStatus(),
+//                        lawApiResponseElement.getPropositionDate(),
+//                        lawApiResponseElement.getPropositionDate(),
+//                        lawApiResponseElement.getLawResult(),
+//                        lawSummaryResponse.getBackgroundInfo(),
+//                        lawSummaryResponse.getExample(),
+//                        lawSummaryResponse.getAgreeLogic(),
+//                        lawSummaryResponse.getDisagreeLogic()
+//                );
+//                applicationEventPublisher.publishEvent(new LawUpdateEvent(existingLaw));
+//            }
         }
     }
 }
