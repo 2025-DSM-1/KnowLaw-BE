@@ -33,7 +33,7 @@ public class VoteLawService {
         Law law = lawRepository.findById(lawId).orElseThrow(() -> LawNotFoundException.EXCEPTION);
 
         boolean alreadyVoted = userVoteRepository.existsByUserAndLaw(user, law);
-        if (alreadyVoted) {
+        if (!alreadyVoted) {
             throw LawAlreadyVoteException.EXCEPTION;
         }
 
