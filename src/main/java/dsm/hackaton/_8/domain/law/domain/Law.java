@@ -28,41 +28,41 @@ public class Law {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "law_serial_number", unique = true)
+    @Column(name = "law_serial_number", unique = true, nullable = false)
     private int lawSerialNumber;  // 의안번호 open pai
 
-    @Column(name = "law_title")
+    @Column(name = "law_title", nullable = false)
     private String lawTitle;  // 의안제목 open api
 
-    @Column(name = "law_content", columnDefinition = "LONGTEXT")
+    @Column(name = "law_content", columnDefinition = "LONGTEXT", nullable = false)
     private String lawContent;   // python server 한 줄 요약
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "law_id")
     private List<LawSummaryContent> lawSummaryContent;  // 파이썬 서버에서 받아온 내용 저장
 
-    @Column(name = "law_status", columnDefinition = "LONGTEXT")
+    @Column(name = "law_status", columnDefinition = "LONGTEXT", nullable = false)
     private String lawStatus;  // 오픈 api
 
-    @Column(name = "proposition_date")
+    @Column(name = "proposition_date", nullable = false)
     private LocalDate propositionDate; // open api 발의일 = 제안일자
 
-    @Column(name = "promulgation_date")
+    @Column(name = "promulgation_date", nullable = false)
     private LocalDate promulgationDate;  // open api 공포일 -> 제안일자
 
-    @Column(name = "resolution_result")
+    @Column(name = "resolution_result", nullable = false)
     private String resolutionResult;  // open api  의결결과
 
-    @Column(name = "background_info", columnDefinition = "LONGTEXT")
+    @Column(name = "background_info", columnDefinition = "LONGTEXT", nullable = false)
     private String backgroundInfo; // python server
 
-    @Column(name = "example", columnDefinition = "LONGTEXT")
+    @Column(name = "example", columnDefinition = "LONGTEXT", nullable = false)
     private String example;  // python server
 
-    @Column(name = "agree_logic")
+    @Column(name = "agree_logic", nullable = false)
     private String agreeLogic;
 
-    @Column(name = "disagree_logic")
+    @Column(name = "disagree_logic", nullable = false)
     private String disagreeLogic;
 
     public void updateLaw(
