@@ -21,6 +21,7 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "user not found"),
     USER_ALREADY_EXISTS(409, "user already exists"),
     LAW_ALREADY_VOTE(409, "law already vote"),
+    ALREADY_FAVORITE(409, "already favorite"),
     INTERNAL_SERVER_ERROR(500, "server error"),
     EMAIL_SEND_FAILED(503, "email send failed.");
 
