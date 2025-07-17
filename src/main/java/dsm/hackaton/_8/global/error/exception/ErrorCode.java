@@ -16,6 +16,7 @@ public enum ErrorCode {
     EXPIRED_TOKEN_EXCEPTION(401,"expired token exception"),
     PASSWORD_NOT_VALID(401, "password not valid"),
     REFRESH_TOKEN_NOT_FOUND(404, "refresh token not found"),
+    USER_VOTE_NOT_FOUND(404, "user vote not found"),
     LAW_NOT_FOUND(404, "law not found"),
     COMMENTS_NOT_FOUND(404, "comments not found"),
     USER_NOT_FOUND(404, "user not found"),
