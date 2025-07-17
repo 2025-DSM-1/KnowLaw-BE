@@ -28,41 +28,41 @@ public class Law {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "law_serial_number", nullable = false, unique = true)
+    @Column(name = "law_serial_number", unique = true)
     private int lawSerialNumber;  // 의안번호 open pai
 
-    @Column(name = "law_title", nullable = false)
+    @Column(name = "law_title")
     private String lawTitle;  // 의안제목 open api
 
-    @Column(name = "law_content", nullable = false)
+    @Column(name = "law_content", columnDefinition = "LONGTEXT")
     private String lawContent;   // python server 한 줄 요약
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "law_id")
     private List<LawSummaryContent> lawSummaryContent;  // 파이썬 서버에서 받아온 내용 저장
 
-    @Column(name = "law_status", nullable = false)
+    @Column(name = "law_status", columnDefinition = "LONGTEXT")
     private String lawStatus;  // 오픈 api
 
-    @Column(name = "proposition_date", nullable = false)
+    @Column(name = "proposition_date")
     private LocalDate propositionDate; // open api 발의일 = 제안일자
 
-    @Column(name = "promulgation_date", nullable = false)
+    @Column(name = "promulgation_date")
     private LocalDate promulgationDate;  // open api 공포일 -> 제안일자
 
-    @Column(name = "resolution_result", nullable = false)
+    @Column(name = "resolution_result")
     private String resolutionResult;  // open api  의결결과
 
-    @Column(name = "background_info", nullable = false)
+    @Column(name = "background_info", columnDefinition = "LONGTEXT")
     private String backgroundInfo; // python server
 
-    @Column(name = "example", nullable = false)
+    @Column(name = "example", columnDefinition = "LONGTEXT")
     private String example;  // python server
 
-    @Column(name = "agree_logic", nullable = false)
+    @Column(name = "agree_logic")
     private String agreeLogic;
 
-    @Column(name = "disagree_logic", nullable = false)
+    @Column(name = "disagree_logic")
     private String disagreeLogic;
 
     public void updateLaw(
