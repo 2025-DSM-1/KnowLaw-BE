@@ -16,9 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class DeleteFavoriteService {
 
     private final FavoriteRepository favoriteRepository;
-
     private final LawRepository lawRepository;
-
     private final UserFacade userFacade;
 
     @Transactional
