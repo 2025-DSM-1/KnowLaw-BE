@@ -2,6 +2,7 @@ package dsm.hackaton._8.domain.comment.service;
 
 import dsm.hackaton._8.domain.comment.domain.Comment;
 import dsm.hackaton._8.domain.comment.domain.repository.CommentRepository;
+import dsm.hackaton._8.domain.comment.exception.UserVoteNotFoundException;
 import dsm.hackaton._8.domain.comment.presentaion.dto.request.CreateCommentRequest;
 import dsm.hackaton._8.domain.law.domain.Law;
 import dsm.hackaton._8.domain.law.domain.repository.LawRepository;
@@ -29,7 +30,8 @@ public class CreateCommentService {
     public void execute(CreateCommentRequest request, Long lawId) {
         User user = userFacade.getCurrentUser();
         Law law = lawRepository.findById(lawId).orElseThrow(() -> LawNotFoundException.EXCEPTION);
-        UserVote userVote = userVoteRepository.findByUserId(user.getId());
+        UserVote userVote = userVoteRepository.findByUserAndLaw(user, law)
+                .orElseThrow(() -> UserVoteNotFoundException.EXCEPTION);
 
         Comment comment = Comment.builder()
                 .commentType(request.getCommentType())
