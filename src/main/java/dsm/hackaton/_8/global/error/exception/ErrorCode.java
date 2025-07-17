@@ -17,8 +17,10 @@ public enum ErrorCode {
     PASSWORD_NOT_VALID(401, "password not valid"),
     REFRESH_TOKEN_NOT_FOUND(404, "refresh token not found"),
     LAW_NOT_FOUND(404, "law not found"),
+    COMMENTS_NOT_FOUND(404, "comments not found"),
     USER_NOT_FOUND(404, "user not found"),
     USER_ALREADY_EXISTS(409, "user already exists"),
+    LAW_ALREADY_VOTE(409, "law already vote"),
     INTERNAL_SERVER_ERROR(500, "server error"),
     EMAIL_SEND_FAILED(503, "email send failed.");
 
