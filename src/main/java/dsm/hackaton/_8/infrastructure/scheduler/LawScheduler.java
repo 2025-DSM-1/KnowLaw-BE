@@ -11,8 +11,8 @@ public class LawScheduler {
 
     private final SaveLawsService saveLawsService;
 
-    @Scheduled(cron = "0 */5 * * * ?", zone = "Asia/Seoul")
-    public void saveLawsEveryFiveMinutes() {
+    @Scheduled(fixedDelay = 10 * 60 * 1000, initialDelay = 0, zone = "Asia/Seoul")
+    public void saveLawsEveryTenMinutesAfterExecution() {
         saveLawsService.execute();
     }
 }
