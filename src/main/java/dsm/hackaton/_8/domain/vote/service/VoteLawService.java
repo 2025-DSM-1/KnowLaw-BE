@@ -7,7 +7,6 @@ import dsm.hackaton._8.domain.user.domain.User;
 import dsm.hackaton._8.domain.user.facade.UserFacade;
 import dsm.hackaton._8.domain.vote.domain.UserVote;
 import dsm.hackaton._8.domain.vote.domain.Vote;
-import dsm.hackaton._8.domain.vote.domain.exception.LawAlreadyVoteException;
 import dsm.hackaton._8.domain.vote.domain.repository.UserVoteRepository;
 import dsm.hackaton._8.domain.vote.domain.repository.VoteRepository;
 import dsm.hackaton._8.domain.vote.domain.type.VoteType;
@@ -31,11 +30,6 @@ public class VoteLawService {
         User user = userFacade.getCurrentUser();
         Vote vote = voteRepository.findVoteByLawId(lawId);
         Law law = lawRepository.findById(lawId).orElseThrow(() -> LawNotFoundException.EXCEPTION);
-
-        boolean alreadyVoted = userVoteRepository.existsByUserAndLaw(user, law);
-        if (!alreadyVoted) {
-            throw LawAlreadyVoteException.EXCEPTION;
-        }
 
         UserVote userVote = UserVote.builder()
                 .user(user)
