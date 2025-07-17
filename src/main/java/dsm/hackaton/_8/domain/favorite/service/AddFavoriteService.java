@@ -17,20 +17,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class AddFavoriteService {
 
     private final FavoriteRepository favoriteRepository;
-
     private final UserFacade userFacade;
-
     private final LawRepository lawRepository;
 
     @Transactional
     public void execute(Long lawId) {
         Law law = lawRepository.findById(lawId).orElseThrow(() -> LawNotFoundException.EXCEPTION);
         User user = userFacade.getCurrentUser();
-
-        boolean alreadyFavorite = favoriteRepository.existsByUserAndLaw(user, law);
-        if (!alreadyFavorite) {
-            throw AlreadyFavoriteException.EXCEPTION;
-        }
 
         Favorite favorite = Favorite.builder()
                 .user(user)
