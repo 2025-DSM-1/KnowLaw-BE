@@ -28,7 +28,7 @@ public class AddFavoriteService {
         User user = userFacade.getCurrentUser();
 
         boolean alreadyFavorite = favoriteRepository.existsByUserAndLaw(user, law);
-        if (alreadyFavorite) {
+        if (!alreadyFavorite) {
             throw AlreadyFavoriteException.EXCEPTION;
         }
 
