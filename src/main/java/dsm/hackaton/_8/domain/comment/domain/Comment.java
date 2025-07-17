@@ -3,6 +3,7 @@ package dsm.hackaton._8.domain.comment.domain;
 import dsm.hackaton._8.domain.comment.domain.type.CommentType;
 import dsm.hackaton._8.domain.law.domain.Law;
 import dsm.hackaton._8.domain.user.domain.User;
+import dsm.hackaton._8.domain.vote.domain.type.VoteType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -34,6 +35,10 @@ public class Comment {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CommentType commentType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private VoteType voteType;
 
     @Column(name = "content", nullable = false)
     private String content;
