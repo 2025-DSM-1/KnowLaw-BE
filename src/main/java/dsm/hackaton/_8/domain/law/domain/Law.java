@@ -50,7 +50,7 @@ public class Law {
     @Column(name = "promulgation_date", nullable = false)
     private LocalDate promulgationDate;  // open api 공포일 -> 제안일자
 
-    @Column(name = "enforcement_date", nullable = false)
+    @Column(name = "resolution_result", nullable = false)
     private String resolutionResult;  // open api  의결결과
 
     @Column(name = "background_info", nullable = false)
