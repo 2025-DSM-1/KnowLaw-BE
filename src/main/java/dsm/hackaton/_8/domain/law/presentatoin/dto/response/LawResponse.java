@@ -16,6 +16,7 @@ public class LawResponse {
     private Long lawId;
     private int lawSerialNumber;
     private String lawTitle;
+    private String lawStatus;
     private String lawContent;
     private LocalDate promulgationDate;
     private String resolutionResult;
